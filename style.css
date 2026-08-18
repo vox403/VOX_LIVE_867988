@@ -6,6 +6,7 @@
   --red: #ff174f;
   --white: #f2fcff;
   --muted: #7fb9ca;
+  --display-font: Impact, "Arial Black", Haettenschweiler, "Arial Narrow", sans-serif;
 }
 
 * {
@@ -212,7 +213,7 @@ a:focus-visible {
 
 .login-card h1 {
   margin: 0;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-family: var(--display-font);
   font-size: clamp(32px, 5vw, 46px);
   font-weight: 500;
   line-height: 0.98;
@@ -460,7 +461,7 @@ a:focus-visible {
 
 .channel-chip strong {
   display: block;
-  font-family: Impact, Haettenschweiler, sans-serif;
+  font-family: var(--display-font);
   font-size: 25px;
   font-weight: 500;
   letter-spacing: 0.09em;
@@ -485,7 +486,7 @@ a:focus-visible {
 }
 
 .viewer-chip strong {
-  font-family: Impact, Haettenschweiler, sans-serif;
+  font-family: var(--display-font);
   font-size: 27px;
   font-weight: 500;
   letter-spacing: 0.055em;
@@ -509,6 +510,30 @@ a:focus-visible {
   width: 54px;
   border: 1px solid rgba(71, 211, 244, 0.25);
   font-size: 20px;
+}
+
+#muteButton {
+  position: relative;
+}
+
+#muteButton::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 25px;
+  height: 2px;
+  content: "";
+  border-radius: 999px;
+  background: currentColor;
+  box-shadow: 0 0 5px currentColor;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) rotate(-48deg);
+  transition: opacity 150ms ease;
+}
+
+#muteButton.is-muted::after {
+  opacity: 1;
 }
 
 .top-icon:hover,
@@ -750,7 +775,7 @@ a:focus-visible {
   border-radius: 4px;
   background: linear-gradient(90deg, rgba(4, 29, 54, 0.98), rgba(8, 67, 95, 0.92));
   box-shadow: 0 0 26px rgba(0, 218, 255, 0.18), inset 0 0 18px rgba(0, 214, 255, 0.04);
-  font-family: Impact, Haettenschweiler, sans-serif;
+  font-family: var(--display-font);
   font-size: 23px;
   letter-spacing: 0.12em;
   transition: background 180ms ease, transform 180ms ease;
@@ -907,7 +932,7 @@ a:focus-visible {
   right: 16px;
   bottom: 42px;
   color: #fff;
-  font-family: Impact, Haettenschweiler, sans-serif;
+  font-family: var(--display-font);
   font-size: 30px;
   font-weight: 500;
   text-shadow: 2px 2px 0 #006c9b, 0 0 16px var(--blue);
@@ -991,7 +1016,7 @@ a:focus-visible {
   border: 1px solid #8ef8ff;
   background: #071e35;
   color: var(--blue);
-  font-family: Impact, sans-serif;
+  font-family: var(--display-font);
   font-size: 28px;
   text-shadow: 2px 0 var(--red);
 }
@@ -1075,7 +1100,7 @@ a:focus-visible {
 
 .credits-modal h2 {
   margin: 0;
-  font-family: Impact, Haettenschweiler, sans-serif;
+  font-family: var(--display-font);
   font-size: 49px;
   font-weight: 500;
   letter-spacing: 0.08em;
@@ -1297,69 +1322,102 @@ a:focus-visible {
     top: max(10px, env(safe-area-inset-top));
     right: max(10px, env(safe-area-inset-right));
     left: max(10px, env(safe-area-inset-left));
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr) 92px 38px 34px;
     min-height: 42px;
-    align-items: center;
-    gap: 5px;
+    align-items: stretch;
+    gap: 4px;
   }
 
   .live-pill {
-    min-width: 65px;
-    height: 38px;
-    gap: 6px;
-    font-size: 11px;
+    min-width: 0;
+    height: 42px;
+    gap: 5px;
+    padding: 0 7px;
+    font-size: 10px;
+    letter-spacing: 0.08em;
   }
 
   .live-pill span {
     width: 6px;
     height: 6px;
+    border-width: 1px;
   }
 
   .channel-chip {
     min-width: 0;
-    gap: 6px;
+    height: 42px;
+    gap: 4px;
+    overflow: hidden;
+  }
+
+  .channel-chip > div:nth-child(2) {
+    min-width: 0;
   }
 
   .channel-logo {
-    width: 38px;
-    height: 38px;
+    display: grid;
+    width: 36px;
+    height: 36px;
+    flex: 0 0 36px;
   }
 
   .channel-logo img {
-    width: 32px;
+    width: 30px;
   }
 
-  .channel-chip small,
-  .channel-chip b {
-    display: none;
+  .channel-chip small {
+    display: block;
+    overflow: hidden;
+    font-size: 5px;
+    letter-spacing: 0.1em;
+    text-overflow: clip;
+    white-space: nowrap;
   }
 
   .channel-chip strong {
-    font-size: 21px;
+    font-size: 19px;
+    letter-spacing: 0.07em;
+  }
+
+  .channel-chip b {
+    display: grid;
+    width: 14px;
+    height: 14px;
+    flex: 0 0 14px;
+    font-size: 8px;
   }
 
   .viewer-chip {
-    min-width: 92px;
-    height: 38px;
-    gap: 6px;
+    width: 92px;
+    min-width: 0;
+    height: 42px;
+    gap: 5px;
+    padding: 0 7px;
   }
 
   .viewer-chip strong {
     font-size: 19px;
+    letter-spacing: 0.045em;
   }
 
   .eye-icon {
-    font-size: 12px;
+    font-size: 11px;
+  }
+
+  .time-chip {
+    display: none;
   }
 
   .top-icon,
   .close-button {
-    width: 35px;
-    height: 38px;
-    font-size: 16px;
+    width: 100%;
+    height: 42px;
+    font-size: 15px;
   }
 
   .close-button {
-    font-size: 31px;
+    font-size: 29px;
   }
 
   .stage {
@@ -1420,14 +1478,14 @@ a:focus-visible {
 
   .control-bar {
     right: max(10px, env(safe-area-inset-right));
-    bottom: max(17px, env(safe-area-inset-bottom));
+    bottom: max(26px, calc(env(safe-area-inset-bottom) + 18px));
     left: max(10px, env(safe-area-inset-left));
     height: 56px;
   }
 
   .comment-control,
   .action-buttons {
-    transform: translateY(14px);
+    transform: none;
   }
 
   .reaction-count {
@@ -1456,8 +1514,9 @@ a:focus-visible {
   }
 
   .action-button {
-    width: 48px;
-    height: 51px;
+    width: clamp(46px, 12.8vw, 50px);
+    height: clamp(46px, 12.8vw, 50px);
+    aspect-ratio: 1;
     font-size: 20px;
   }
 
@@ -1525,23 +1584,15 @@ a:focus-visible {
 
 @media (max-width: 430px) {
   .channel-chip strong {
-    font-size: 18px;
-  }
-
-  .channel-logo {
-    display: none;
+    font-size: 17px;
   }
 
   .viewer-chip {
-    min-width: 82px;
+    width: 92px;
   }
 
   .viewer-chip strong {
     font-size: 17px;
-  }
-
-  .top-icon {
-    display: none;
   }
 
   .comment-button {
@@ -1551,7 +1602,70 @@ a:focus-visible {
   }
 
   .action-button {
-    width: 45px;
+    width: clamp(46px, 12.8vw, 50px);
+    height: clamp(46px, 12.8vw, 50px);
+  }
+}
+
+@media (max-width: 360px) {
+  .topbar {
+    right: max(8px, env(safe-area-inset-right));
+    left: max(8px, env(safe-area-inset-left));
+    grid-template-columns: 56px minmax(0, 1fr) 79px 32px 30px;
+    gap: 3px;
+  }
+
+  .live-pill {
+    padding: 0 5px;
+    font-size: 9px;
+  }
+
+  .channel-chip {
+    gap: 3px;
+  }
+
+  .channel-logo {
+    width: 30px;
+    height: 30px;
+    flex-basis: 30px;
+  }
+
+  .channel-logo img {
+    width: 25px;
+  }
+
+  .channel-chip small {
+    font-size: 4px;
+    letter-spacing: 0.06em;
+  }
+
+  .channel-chip strong {
+    font-size: 15px;
+  }
+
+  .channel-chip b {
+    width: 12px;
+    height: 12px;
+    flex-basis: 12px;
+    font-size: 7px;
+  }
+
+  .viewer-chip {
+    width: 79px;
+    gap: 4px;
+    padding: 0 5px;
+  }
+
+  .viewer-chip strong {
+    font-size: 15px;
+  }
+
+  .top-icon {
+    font-size: 14px;
+  }
+
+  .close-button {
+    font-size: 26px;
   }
 }
 
