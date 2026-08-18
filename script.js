@@ -13,11 +13,14 @@
     ["최고의V", "다음 계획은 무엇인가요?"],
     ["KINGVOX", "경배하라!!"],
     ["GLITTRBBY", "복스테크는 최고의 회사입니다."],
+    ["블루스크린러버", "이 방송만 기다렸어요"],
+    ["채널고정중", "복스님 목소리 더 들려주세요!"],
     ["ALTO", "vox populi! vox populi!"],
     ["NEONSAINT", "THAT SCREEN SMILE IS EVERYTHING."],
     ["SIGNALBOOSTER", "ALL HAIL THE FUTURE OF HELL."],
     ["BLUESTATIC", "VOXTEK NEVER MISSES."],
     ["PRIMETIME666", "THE RATINGS KING IS LIVE."],
+    ["VOXTEKSUPPORT", "VOX! VOX! VOX! VOX!"],
     ["REMOTECTRL", "SAY MY USERNAME, BOSS!"],
     ["CHANNELSURFER", "BEST BROADCAST IN THE PENTAGRAM."],
     ["PIXELHEART", "HE LOOKED AT THE CAMERA!!!"],
@@ -27,6 +30,8 @@
   ];
   const moderated = [
     ["EGGBOYS", "발렌티노님이랑 사귄다는 소문이 사실인가요?"],
+    ["BROKENSCREEN", "머리만 남았던 영상 아직도 인터넷에 돌아다녀요ㅋㅋ"],
+    ["PRIVACYWHO", "복스테크 제품이 사용자들을 감시한다는 게 사실인가요?"],
     ["ZENDEST", "알래스터한테 졌다면서요?"]
   ];
   const handFrames = [
