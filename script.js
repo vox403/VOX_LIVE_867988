@@ -167,10 +167,14 @@
     scheduleBlink();
     scheduleComment();
     const audio = $("bgm");
+    const muteButton = $("muteButton");
     audio.volume = 0.36;
+    muteButton.classList.toggle("is-muted", audio.muted);
+    muteButton.setAttribute("aria-pressed", String(audio.muted));
     audio.play().catch(() => {
-      $("muteButton").textContent = "▱";
       audio.muted = true;
+      muteButton.classList.add("is-muted");
+      muteButton.setAttribute("aria-pressed", "true");
     });
   }
   function exitBroadcast() {
@@ -193,9 +197,11 @@
   }
   function toggleMute() {
     const audio = $("bgm");
+    const muteButton = $("muteButton");
     audio.muted = !audio.muted;
-    $("muteButton").textContent = audio.muted ? "▱" : "♪";
-    $("muteButton").setAttribute("aria-label", audio.muted ? "음악 켜기" : "음악 끄기");
+    muteButton.classList.toggle("is-muted", audio.muted);
+    muteButton.setAttribute("aria-label", audio.muted ? "음악 켜기" : "음악 끄기");
+    muteButton.setAttribute("aria-pressed", String(audio.muted));
     if (!audio.muted) audio.play().catch(() => undefined);
   }
   function updateCommentButton() {
