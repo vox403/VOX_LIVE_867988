@@ -1,6 +1,22 @@
 (() => {
   const $ = (id) => document.getElementById(id);
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+   const SUPABASE_URL = "https://gvuhbxpkmyiakyfhuish.supabase.co";
+  const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_uCymLmzy-3NR9JyOL-9DtA_HmkGb0-k";
+
+  const database = window.supabase
+    ? window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY,
+        {
+          auth: {
+            persistSession: false,
+            autoRefreshToken: false,
+            detectSessionInUrl: false
+          }
+        }
+      )
+    : null;
   const imageFiles = ["1.png", "2.png", "4.png", "5.png", "6.png", "11.png", "12.png", "15.png", "17.png", "18.png", "voxtek.png"];
   const comments = [
     ["복스님바라기", "복스님 멋져요"],
@@ -150,6 +166,7 @@
     $("chatFeed").replaceChildren();
     initial.forEach(([n, t]) => addMessage(n, t));
     addMessage("", `[${nickname}] 님이 입장하셨습니다.`, "system");
+    void recordVisit(nickname);
     seconds = 0;
     viewers = 42333;
     viewerTimer = setInterval(() => {
@@ -343,6 +360,18 @@
       showToast("닉네임을 입력해주세요.");
       return;
     }
+  async function recordVisit(name) {
+    if (!database) return;
+
+    const { error } = await database
+      .from("vox_live_visits")
+      .insert({ nickname: name });
+
+    if (error) {
+      console.error("방문 기록 저장 실패:", error.message);
+    }
+  }
+    
     startBroadcast();
   });
   $("exitButton").addEventListener("click", exitBroadcast);
