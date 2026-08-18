@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#020915">
+  <title>VOX LIVE BROADCAST</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="site-root">
+    <audio id="bgm" loop preload="auto"></audio>
+
+    <section id="login" class="login-screen">
+      <div class="login-noise"></div>
+      <div class="login-orbit orbit-one"></div>
+      <div class="login-orbit orbit-two"></div>
+
+      <form id="loginForm" class="login-card">
+        <div class="logo-frame">
+          <img id="loginLogo" class="login-logo" alt="VoxTek">
+        </div>
+        <p class="eyebrow">VOXTEK LIVE NETWORK</p>
+        <h1>ENTER THE BROADCAST</h1>
+        <p class="login-copy">시청자 인증을 위해 닉네임을 입력하세요.</p>
+        <label for="nicknameInput">NICKNAME</label>
+        <div class="input-wrap">
+          <span>›</span>
+          <input id="nicknameInput" maxlength="18" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="go" placeholder="닉네임 입력" autofocus required>
+        </div>
+        <button type="submit" class="enter-button">방송 입장 <span>→</span></button>
+        <div class="signal-line">
+          <i></i>
+          <span>SIGNAL SECURED · CHANNEL 666</span>
+          <i></i>
+        </div>
+      </form>
+    </section>
+
+    <section id="broadcast" class="broadcast hidden">
+      <div class="broadcast-grid"></div>
+      <div class="ambient ambient-left"></div>
+      <div class="ambient ambient-right"></div>
+      <div class="scanlines"></div>
+
+      <header class="topbar">
+        <div class="live-pill"><span></span> LIVE</div>
+        <div class="channel-chip">
+          <div class="channel-logo"><img id="channelLogo" alt=""></div>
+          <div>
+            <small>VOXTEK OFFICIAL</small>
+            <strong>VOX</strong>
+          </div>
+          <b>✓</b>
+        </div>
+        <div class="viewer-chip">
+          <span class="eye-icon">◉</span>
+          <strong id="viewerCount">42,333</strong>
+        </div>
+        <div id="liveTime" class="time-chip">00:00:00</div>
+        <button id="muteButton" type="button" class="top-icon" aria-label="음악 끄기" title="BGM 켜기/끄기">♪</button>
+        <button id="exitButton" type="button" class="close-button" aria-label="방송 나가기">×</button>
+      </header>
+
+      <div id="stage" class="stage" title="더블 클릭해 하트를 보내세요">
+        <div class="signal-ring ring-a"></div>
+        <div class="signal-ring ring-b"></div>
+        <img id="voxFrame" class="vox-frame" alt="방송 중인 복스" draggable="false">
+        <div id="voxSubtitle" class="vox-subtitle hidden">싫어.</div>
+        <div class="camera-label"><span>CAM 01</span><i></i>ON AIR</div>
+      </div>
+
+      <div id="donationOverlay" class="donation-overlay hidden">
+        <div id="confettiField" class="confetti-field"></div>
+        <div class="donation-banner">
+          <div class="donation-badge">V</div>
+          <div>
+            <small>PRIORITY TRANSMISSION</small>
+            <strong id="donationText"></strong>
+          </div>
+        </div>
+      </div>
+
+      <section class="chat-panel" aria-label="실시간 댓글">
+        <div class="chat-heading">
+          <span>LIVE CHAT</span>
+          <i></i>
+          <small>실시간</small>
+        </div>
+        <div id="chatFeed" class="chat-feed" aria-live="polite"></div>
+      </section>
+
+      <div id="heartStream" class="heart-stream" aria-hidden="true">
+        <b id="heartCombo" class="heart-combo hidden"></b>
+      </div>
+
+      <footer class="control-bar">
+        <div class="comment-control">
+          <div id="choiceMenu" class="choice-menu hidden">
+            <span>SELECT A COMMENT</span>
+            <button id="choiceButton" type="button"></button>
+          </div>
+          <button id="commentButton" type="button" class="comment-button"><span>COMMENT</span></button>
+        </div>
+
+        <div class="action-buttons">
+          <div class="reaction-count"><span id="reactionCount">0</span> <small>REACTIONS</small></div>
+          <button id="heartButton" type="button" class="action-button heart-button" aria-label="하트 보내기" title="하트 보내기">♥</button>
+          <button id="shareButton" type="button" class="action-button share-button" aria-label="방송 링크 복사" title="링크 복사">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0-11L7.5 7.5M12 3l4.5 4.5M5 12v7h14v-7"></path></svg>
+          </button>
+          <button id="creditsButton" type="button" class="action-button more-button" aria-label="크레딧 보기">•••</button>
+        </div>
+      </footer>
+
+      <div class="ticker">
+        <span>VOXTEK LIVE · THE FUTURE IS HERE · TRUST US · VOX POPULI · </span>
+        <span>VOXTEK LIVE · THE FUTURE IS HERE · TRUST US · VOX POPULI · </span>
+      </div>
+    </section>
+
+    <div id="creditsBackdrop" class="modal-backdrop hidden">
+      <section class="credits-modal" role="dialog" aria-modal="true" aria-labelledby="creditsTitle">
+        <button id="creditsClose" type="button" class="modal-close" aria-label="크레딧 닫기">×</button>
+        <p>VOXTEK TRANSMISSION</p>
+        <h2 id="creditsTitle">CREDITS</h2>
+        <div class="credit-rule"></div>
+        <dl>
+          <div>
+            <dt>CREATOR</dt>
+            <dd>867988 <a href="https://x.com/vox403_" target="_blank" rel="noreferrer">@vox403_</a></dd>
+          </div>
+          <div>
+            <dt>ILLUSTRATION</dt>
+            <dd>유후 <a href="https://x.com/Yoohooaaaaaa" target="_blank" rel="noreferrer">@Yoohooaaaaaa</a></dd>
+          </div>
+          <div>
+            <dt>BGM</dt>
+            <dd>[RFM] Royalty Free Music - ForArtist<br>Song : Cats Cats Cats - 귀여워서 눌러주고 싶은 고양이 (행복냥 / 저작권 걱정 없는 BGM) Cats Cats Cats</dd>
+          </div>
+        </dl>
+        <span class="modal-footer">END OF TRANSMISSION DATA</span>
+      </section>
+    </div>
+
+    <div id="toast" class="toast hidden" role="status">
+      <span>✓</span>
+      <b id="toastText"></b>
+    </div>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
